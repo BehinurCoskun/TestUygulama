@@ -1,8 +1,4 @@
-
 using Microsoft.EntityFrameworkCore;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
 using TestUygulama.Models;
 
 namespace TestUygulama
@@ -26,11 +22,11 @@ namespace TestUygulama
             string malKodu = "";
 
             // Önce maladý var mý yok mu kontrolü yapýlýyor. Eðer mal adý ile arama yapýlmýþ ise Else kýsmýnda mal adýna ait malKodu elde ediliyor.
-            if(!_testDbContext.Stks.Any(x => x.MalAdi == malKoduAdý))
+            if (!_testDbContext.Stks.Any(x => x.MalAdi == malKoduAdý))
             {
                 // Eðer girilen isimde bir malAdý yok ise
                 // bu isimde bir malKodu var mý yok mu kontrolü yapýlýr. Eðer bu isimde bir malkodu var ise Else kýsmýnda parametre olarak gidecek malKoduna setlenir. 
-                if(!_testDbContext.Stks.Any(x => x.MalKodu == malKoduAdý))
+                if (!_testDbContext.Stks.Any(x => x.MalKodu == malKoduAdý))
                 {
                     // girilen aramaya ait maladý veya malkodu yok ise kullanýcýya hata mesajý döner ve fonksiyondan çýkar.
                     MessageBox.Show("'" + malKoduAdý + "' \n Böyle bir malAdý veya malKodu bulunmamaktadýr.");
