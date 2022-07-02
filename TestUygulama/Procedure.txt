@@ -8,23 +8,25 @@ begin
 Select 
  	ROW_NUMBER() Over(
 		Order By Tarih
-	) 'Sıra No',
+	) 'SiraNo',
   Case IslemTur
 		When 0 Then 'Giriş'
 		else 'Çıkış'
-  End As 'Islem Tur',
+  End As 'IslemTur',
 
-  EvrakNo, CONVERT(VARCHAR(15), CAST(STI.Tarih - 2 AS datetime), 104) As Tarih,
+  EvrakNo, 
+  
+  CONVERT(VARCHAR(15), CAST(STI.Tarih - 2 AS datetime), 104) As Tarih,
 
   Case IslemTur
 		When 0 then Miktar
 		Else 0
-  End As 'Giris Miktar',
+  End As 'GirisMiktar',
 
   Case IslemTur
 		When 1 then Miktar
 		Else 0
-  End As 'Cikis Miktar',
+  End As 'CikisMiktar',
 
   Sum(Case 
 		When IslemTur = 0 then Miktar
